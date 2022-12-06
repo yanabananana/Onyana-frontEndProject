@@ -5,7 +5,7 @@ import { UsersdetailsComponent } from './component/usersdetails/usersdetails.com
 
 const routes: Routes = [
   {path:'users', component:UsersComponent},
-  {path:'user/uuid', component: UsersdetailsComponent},
+  {path:'user/:uuid', component: UsersdetailsComponent},
   {path:'**', redirectTo: 'user'}
 
 ];

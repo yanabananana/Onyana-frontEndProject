@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Response } from '../component/users/interface/response.interface';
 import { User } from '../component/users/interface/user.interface';
+import { UsersComponent } from '../component/users/users.component';
 
 
 @Injectable({providedIn: 'root'})
@@ -12,13 +13,15 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUsers(size: number = 10): Observable<any> {
-    return this.http.get<any>(`$(this.apiUrl}/?results=${size}`).pipe(
+    return this.http.get<any>(`${this.apiUrl}?results=${size}`).pipe(
       map(response => this.processResponse(response)) 
-    ); 
+    );
   }
+  
 
-  getUser(uuid: number = 1): Observable<any> {
-    return this.http.get<any>(`$(this.apiUrl}/?uuid=${uuid}`);
+  getUser(uuid: string ): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/?uuid=${uuid}`);
+
   }
 
   private processResponse(response: Response): Response { 
@@ -26,8 +29,8 @@ export class UserService {
       info: {...response.info },
       results: response.results.map((user: any) => (<User>{
         uuid: user.login.uuid,
-        firstName:user.first.name,
-        lastName: user.last.name,
+        firstName:user.name.first, 
+        lastName: user.name.last,
         email: user.email,
         username: user.login.username,
         gender: user.gender,
