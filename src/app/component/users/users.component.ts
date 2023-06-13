@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 import { Response } from './interface/response.interface';
 
+
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
+
+
 export class UsersComponent implements OnInit {
   response: Response;
   
